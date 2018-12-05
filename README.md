@@ -8,7 +8,13 @@ Create a <code>lib/images/smileys/local/</code> folder and clone this repo there
 
 Copy the <code>smileys.local.conf</code> to <code>conf/smileys.local.conf</code>
 
-## Customize smileys (Official Dokuwiki)
+## Some examples
+
+![local smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/folder.png)
+
+
+
+## Customize smileys (Official Dokuwiki Info)
 
 https://www.dokuwiki.org/smileys
 
