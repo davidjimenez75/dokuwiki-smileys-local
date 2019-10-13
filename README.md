@@ -35,3 +35,12 @@ An example configuration file could look like this: <code>
 DELETEME
 ```
 
+## FAQ
+
+### Problems with cache after editing smileys.local.conf
+
+Editing smileys.local.conf sometimes doesnt not work due to cache issues, try touch the date of conf/local.php al reload Dokuwiki 
+
+- touch local.php
+- erase browser cache
+- erase dokuwiki cache
