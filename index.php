@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+// CONFIG 
+$smileStringStart =':'; // prefix for smileys by default is :
+$smileStringEnd   =':'; // suffix for smileys by default is :
+
+?><!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <title>smileys.local</title>
@@ -6,7 +11,7 @@
     <style type="text/css">
         body {
             margin:0 auto;             
-            font-size: 13px!important; 
+            font-size: 13px; 
 			font-family: courier new;
             background-color: #dadada;
         }
@@ -32,6 +37,8 @@
 
         .smiley {
             vertical-align: middle;
+            max-height: 48px;                /* important for svg smileys */
+            max-width: 128px;                /* important for svg smileys */
             margin: 3px;
         }
         .comments {
@@ -42,12 +49,28 @@
             color: red;
             font-weight: bold;
         }        
+        .text2replace {
+            font-size: 19px!important;             
+        }
+        .smileypath {
+            color: grey;
+        }
     </style>
 
 </head>
 <body>
 
+<?php
+// GLOBALS
+$smileys=array();
+$smileyTexts=array();
 
+// SECURITY
+if (isset($_GET["search"])) {
+    $_GET["search"]=strip_tags($_GET["search"]);
+    $_GET["search"]=htmlspecialchars($_GET["search"]);
+}
+?>
 
 # Custom Smileys<br>
 # Images are seen relatively from the smiley directory lib/images/smileys</br>
@@ -60,12 +83,6 @@
 </form>
 
 <?php
-// GLOBALS
-$smileStringStart=':';
-$smileStringEnd=':';
-$smileys=array();
-$smileyTexts=array();
-
 // RECURSIVE SMILEYS LIST (*.gif)
 $path = realpath('.');
 $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST); // con directorios
@@ -74,9 +91,6 @@ foreach($objects as $name => $object){
     {
         if (isset($_GET["search"]))
         {
-            // SECURITY
-            $_GET["search"]=strip_tags($_GET["search"]);
-            $_GET["search"]=htmlspecialchars($_GET["search"]);
             if ($_GET["search"]=="")
             {
                 $_GET["search"]=".";
@@ -95,9 +109,8 @@ foreach($objects as $name => $object){
 }
 
 function smiley($object){
-    $colsize1=36;
+    $colsize1=45;
     $colsize2=57;
-
 
     // filename to TEXT_TO_REPLACE
     $file=$object->getFilename();
@@ -109,8 +122,16 @@ function smiley($object){
     $pathclean="local/".$path_img;
 
     // colums
-    $columns1=str_repeat("&nbsp;",$colsize1-strlen($file));
-    $columns2=str_repeat("&nbsp;",$colsize2-strlen($pathclean));
+    if ($colsize1>strlen($file)){
+        $columns1=str_repeat("&nbsp;",$colsize1-strlen($file));
+    }else{
+        $columns1=str_repeat("&nbsp;",$colsize1);
+    }
+    if ($colsize2>strlen($pathclean)){
+        $columns2=str_repeat("&nbsp;",$colsize2-strlen($pathclean));
+    }else{
+        $columns2=str_repeat("&nbsp;",$colsize2);
+    }
 
     // repeated TEXT_TO_REPLACE?
     if (in_array($text2replace,$GLOBALS["smileyTexts"]))
@@ -124,11 +145,14 @@ function smiley($object){
     }
  
     $out="<div>";
-    $out='<span class="'.$repeated_css.'">'.$text2replace.'</span>'.$columns1.$pathclean.$columns2;
     $out.='<img src="'.$path_img.'" class="smiley white">';
-    $out.='<img src="'.$path_img.'" class="smiley black">';
-    $out.='<span class="'.$repeated_css.'">'.$repeated_msg.'</span>';
-    $out.='</div><br>';
+    $out.='<img src="'.$path_img.'" class="smiley black">';    
+    $out.='<span class="text2replace '.$repeated_css.'"><b>'.$text2replace.'</b></span>'."\r\n";
+    $out.=$columns1."\r\n";
+    $out.='<span class="smileypath">'.$pathclean."</span>\r\n";
+    $out.=$columns2."\r\n";
+    $out.='<span class=" '.$repeated_css.'">'.$repeated_msg.'</span>'."\r\n";
+    $out.='</div>';
     $out.="\r\n\r\n";
     
     return $out;
@@ -137,7 +161,7 @@ function smiley($object){
 function validExtension($filename){
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
     
-    $validExtensions=array("gif","png","jpg");
+    $validExtensions=array("gif","png","jpg","svg");
     if (in_array(strtolower($ext), $validExtensions))
     {
         return true;
