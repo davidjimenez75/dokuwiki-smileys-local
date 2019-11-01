@@ -10,7 +10,7 @@ Copy the <code>smileys.local.conf</code> to <code>conf/smileys.local.conf</code>
 
 ## Some examples
 
-![local smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/folder.png)
+![local smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/folder.jpg)
 
 
 
