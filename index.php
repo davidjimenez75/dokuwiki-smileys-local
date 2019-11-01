@@ -99,7 +99,7 @@ if ($_GET["mode"]==1){
 ?>
 
 
-<form action="/index.php" method="get" style="float:right;clear:both;">
+<form action="index.php" method="get" style="float:right;clear:both;">
 <input type="text" name="search" value="" placeholder=""  style="float:right;clear:both;">
   <select name="mode" style="float:right;clear:both;">
   <option value="1"<?php if ($_GET["mode"]==1) echo "selected"; ?> >1. smileys.local.conf</option>
