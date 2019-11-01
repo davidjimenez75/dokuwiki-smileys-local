@@ -13,7 +13,20 @@ $smileStringEnd   =':'; // suffix for smileys by default is :
             margin:0 auto;             
             font-size: 13px; 
 			font-family: courier new;
-            background-color: #dadada;
+            <?php 
+            if (isset($_GET["mode"]))
+            {
+                if ($_GET["mode"]==6) {
+                    echo 'background-color: #fff;';
+                }elseif ($_GET["mode"]==7) {
+                    echo 'background-color: #000;';        
+                }else{
+                    echo 'background-color: #dadada;';
+                }
+            }else{
+                echo 'background-color: #dadada;';
+            }
+            ?>
         }
 
         .box {
@@ -70,16 +83,35 @@ if (isset($_GET["search"])) {
     $_GET["search"]=strip_tags($_GET["search"]);
     $_GET["search"]=htmlspecialchars($_GET["search"]);
 }
-?>
+if (!isset($_GET["mode"]) || (!is_numeric($_GET["mode"]))) {
+    $_GET["mode"]=1;
+}
 
+if ($_GET["mode"]==1){
+    echo "
 # Custom Smileys<br>
 # Images are seen relatively from the smiley directory lib/images/smileys</br>
 # TEXT_TO_REPLACE         FILENAME_OF_IMAGE<br>
-#<br>
+#<br>";
+}
 
-<form action="/index.php" method="get" style="float:right">
-  <input type="text" name="search" value="" placeholder=""><br>
-  <input type="submit" value="search smileys" style="float:right">
+
+?>
+
+
+<form action="/index.php" method="get" style="float:right;clear:both;">
+<input type="text" name="search" value="" placeholder=""  style="float:right;clear:both;">
+  <select name="mode" style="float:right;clear:both;">
+  <option value="1"<?php if ($_GET["mode"]==1) echo "selected"; ?> >1. smileys.local.conf</option>
+  <option value="2"<?php if ($_GET["mode"]==2) echo "selected"; ?> >2. dokuwiki</option>
+  <option value="3"<?php if ($_GET["mode"]==3) echo "selected"; ?> >3. dokuwiki (with path)</option>
+  <option value="4"<?php if ($_GET["mode"]==4) echo "selected"; ?> >4. smileys</option>
+  <option value="5"<?php if ($_GET["mode"]==5) echo "selected"; ?> >5. smileys (replacetext)</option>
+  <option value="6"<?php if ($_GET["mode"]==6) echo "selected"; ?> >6. smileys (WHITE)</option>
+  <option value="7"<?php if ($_GET["mode"]==7) echo "selected"; ?> >7. smileys (BLACK)</option>  
+</select>
+<br>
+<input type="submit" value="search smileys" style="float:right">
 </form>
 
 <?php
@@ -144,6 +176,8 @@ function smiley($object){
         $GLOBALS["smileyTexts"][]=$text2replace;
     }
  
+// MODE 1 - smileys.local.conf
+if ($_GET["mode"]==1){
     $out="<div>";
     $out.='<img src="'.$path_img.'" class="smiley white">';
     $out.='<img src="'.$path_img.'" class="smiley black">';    
@@ -154,9 +188,62 @@ function smiley($object){
     $out.='<span class=" '.$repeated_css.'">'.$repeated_msg.'</span>'."\r\n";
     $out.='</div>';
     $out.="\r\n\r\n";
-    
+}
+elseif ($_GET["mode"]==2){
+    // MODE 2 - DOKUWIKI (NO SMILEY PATH)
+    $out="<div>";
+    $out.='<img src="'.$path_img.'" class="smiley white">';
+    $out.='<img src="'.$path_img.'" class="smiley black">';    
+    $out.='<span class="text2replace '.$repeated_css.'"><b>'.$text2replace.'</b></span>'."\r\n";
+    $out.='<span class="text2replace '.$repeated_css.'">&lt;nowiki&gt;'.$text2replace.'&lt;/nowiki&gt;</span>'."\r\n";
+    $out.='<span class=" '.$repeated_css.'">'.$repeated_msg.'</span>'."\r\n";
+    $out.='</div><br>';
+    $out.="\r\n\r\n";
+}elseif ($_GET["mode"]==3){
+    // MODE 3 - DOKUWIKI (WITH SMILEY PATH)
+    $out="<div>";
+    $out.='<img src="'.$path_img.'" class="smiley white">';
+    $out.='<img src="'.$path_img.'" class="smiley black">';    
+    $out.='<span class="text2replace '.$repeated_css.'"><b>'.$text2replace.'</b></span>'."\r\n";
+    $out.='<span class="text2replace '.$repeated_css.'">&lt;nowiki&gt;'.$text2replace.'&lt;/nowiki&gt;</span>'."\r\n";
+    $out.='<span class="smileypath">&lt;sub&gt;'.$pathclean."&lt;/sub&gt;</span>\r\n";
+    $out.='<span class=" '.$repeated_css.'">'.$repeated_msg.'</span>'."\r\n";
+    $out.='</div><br>';
+    $out.="\r\n\r\n";
+}elseif ($_GET["mode"]==4){
+    // MODE 4 - JUST SMILEYS
+    $out="";
+    $out.='<img src="'.$path_img.'" class="smiley white" title="'.$text2replace.'">';
+    $out.='<img src="'.$path_img.'" class="smiley black" title="'.$text2replace.'">';
+    $out.='<span class=" '.$repeated_css.'">'.$repeated_msg.'</span>'."\r\n";
+    $out.="\r\n\r\n";
+}elseif ($_GET["mode"]==5){
+    // MODE 5 - JUST SMILEYS WITH TEXT
+    $out="";
+    $out.='<img src="'.$path_img.'" class="smiley white">';
+    $out.='<img src="'.$path_img.'" class="smiley black">';    
+    $out.='<span class="text2replace '.$repeated_css.'"><b>'.$text2replace.'</b></span>'."\r\n";
+    $out.="\r\n\r\n";
+}elseif ($_GET["mode"]==6){
+    // MODE 6 - JUST SMILEYS (WHITE))
+    $out='<img src="'.$path_img.'" class="white" title="'.$text2replace.'">';
+}elseif ($_GET["mode"]==7){
+    // MODE 7 - JUST SMILEYS (BLACK)
+    $out='<img src="'.$path_img.'" class="black" title="'.$text2replace.'">';
+
+}
+
+
+
+
+else{
+    $out="";
+}
+
+    // FINAL RETURN
     return $out;
 } 
+
 
 function validExtension($filename){
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
