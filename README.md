@@ -66,7 +66,7 @@ DELETEME
 ## Authors and Licenses
 
 | Smiley pack   | Website | Repo | License |
-| ------------- | ------------- |
+| ------------- | ------- | ---- | ------- |
 |icons8    | https://icons8.com           | [github](https://github.com/icons8/flat-color-icons)     | [Good-Boy Licence](https://icons8.com/good-boy-license/) |
 |openmoji  | https://openmoji.org/about/  | [github](https://github.com/hfg-gmuend/openmoji)         | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 |emojione  | https://www.joypixels.com/   | [github archived](https://github.com/joypixels/emojione) - [github](https://github.com/joypixels/emoji-toolkit) | [Free License](https://www.emojione.com/licenses/free) |
