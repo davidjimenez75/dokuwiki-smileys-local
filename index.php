@@ -1,4 +1,11 @@
 <?php
+/**
+ * dokuwiki-smileys-local
+ * 
+ * @rev. 191103
+ */
+
+
 // CONFIG 
 $smileStringStart =':'; // prefix for smileys by default is :
 $smileStringEnd   =':'; // suffix for smileys by default is :
@@ -16,15 +23,17 @@ $smileStringEnd   =':'; // suffix for smileys by default is :
             <?php 
             if (isset($_GET["mode"]))
             {
-                if ($_GET["mode"]==6) {
+                if ($_GET["mode"]==0) {
                     echo 'background-color: #fff;';
+                }elseif ($_GET["mode"]==6) {
+                    echo 'background-color: #fff;';        
                 }elseif ($_GET["mode"]==7) {
                     echo 'background-color: #000;';        
                 }else{
                     echo 'background-color: #dadada;';
                 }
             }else{
-                echo 'background-color: #dadada;';
+                echo 'background-color: #fff;';
             }
             ?>
         }
@@ -68,10 +77,25 @@ $smileStringEnd   =':'; // suffix for smileys by default is :
         .smileypath {
             color: grey;
         }
+        a {
+            color:black;
+            text-decoration: none;
+        }
+        a:hover {
+            color:red;
+        }
+        .folder {
+            font-size: 1.5em;
+            font-weight: bold;
+            border: 1px solid #efefef;
+            background-color: #efefef;
+        }
     </style>
 
 </head>
 <body>
+
+
 
 <?php
 // GLOBALS
@@ -82,63 +106,74 @@ $smileyTexts=array();
 if (isset($_GET["search"])) {
     $_GET["search"]=strip_tags($_GET["search"]);
     $_GET["search"]=htmlspecialchars($_GET["search"]);
+}else{
+    $_GET["search"]="";
 }
 if (!isset($_GET["mode"]) || (!is_numeric($_GET["mode"]))) {
-    $_GET["mode"]=1;
+    $_GET["mode"]=0; // by default show smileys folder
 }
-
-if ($_GET["mode"]==1){
-    echo "
-# Custom Smileys<br>
-# Images are seen relatively from the smiley directory lib/images/smileys</br>
-# TEXT_TO_REPLACE         FILENAME_OF_IMAGE<br>
-#<br>";
-}
-
 
 ?>
-
-
-<form action="index.php" method="get" style="float:right;clear:both;">
-<input type="text" name="search" value="" placeholder=""  style="float:right;clear:both;">
-  <select name="mode" style="float:right;clear:both;">
+<form action="index.php" method="get" style="float:right;border:1px solid white; background-color:white">
+<input type="text" name="search" value="<?php echo $_GET["search"];?>" placeholder="" style="float:right;">
+<br>
+<select name="mode" style="float:right;">
+  <option value="0"<?php if ($_GET["mode"]==0) echo "selected"; ?> >0. smileys folders</option>
   <option value="1"<?php if ($_GET["mode"]==1) echo "selected"; ?> >1. smileys.local.conf</option>
   <option value="2"<?php if ($_GET["mode"]==2) echo "selected"; ?> >2. dokuwiki</option>
   <option value="3"<?php if ($_GET["mode"]==3) echo "selected"; ?> >3. dokuwiki (with path)</option>
   <option value="4"<?php if ($_GET["mode"]==4) echo "selected"; ?> >4. smileys</option>
   <option value="5"<?php if ($_GET["mode"]==5) echo "selected"; ?> >5. smileys (replacetext)</option>
-  <option value="6"<?php if ($_GET["mode"]==6) echo "selected"; ?> >6. smileys (WHITE)</option>
-  <option value="7"<?php if ($_GET["mode"]==7) echo "selected"; ?> >7. smileys (BLACK)</option>  
+  <option value="6"<?php if ($_GET["mode"]==6) echo "selected"; ?> >6. smileys (white bg)</option>
+  <option value="7"<?php if ($_GET["mode"]==7) echo "selected"; ?> >7. smileys (black bg)</option>  
 </select>
 <br>
 <input type="submit" value="search smileys" style="float:right">
 </form>
 
-<?php
-// RECURSIVE SMILEYS LIST (*.gif)
-$path = realpath('.');
-$objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST); // con directorios
-foreach($objects as $name => $object){
-    if ( ($object->getFilename()!=".") && ($object->getFilename()!="..")   && ($object->getFilename()!="folder.jpg") && (validExtension($object->getPathname())) ) 
-    {
-        if (isset($_GET["search"]))
-        {
-            if ($_GET["search"]=="")
-            {
-                $_GET["search"]=".";
-            }
+<h1><br><br><a href="./index.php"># Custom Smileys </a></h1>
 
-            // filter by search string
-            if (substr_count(substr($object->getPathname(),strlen(__DIR__)+1),$_GET["search"]))
+<?php
+
+// header for copy and paste the smileys.local.conf
+if ($_GET["mode"]==1){
+    echo "
+# Images are seen relatively from the smiley directory lib/images/smileys</br>
+# TEXT_TO_REPLACE         FILENAME_OF_IMAGE<br>
+# ";
+}
+
+
+if ($_GET["mode"]==0) {
+    echo listFolders();
+}else{
+    // RECURSIVE SMILEYS LIST (*.gif)
+    $path = realpath('.');
+    $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST); // con directorios
+    foreach($objects as $name => $object){
+        if ( ($object->getFilename()!=".") && ($object->getFilename()!="..")   && ($object->getFilename()!="folder.jpg") && (validExtension($object->getPathname())) ) 
+        {
+            if (isset($_GET["search"]))
             {
+                if ($_GET["search"]=="")
+                {
+                    $_GET["search"]=".";
+                }
+
+                // filter by search string
+                if (substr_count(substr($object->getPathname(),strlen(__DIR__)+1),$_GET["search"]))
+                {
+                    echo smiley($object);
+                }
+    
+            }else{
                 echo smiley($object);
             }
- 
-        }else{
-            echo smiley($object);
         }
     }
 }
+
+// FUNCTIONS --------------------------------
 
 function smiley($object){
     $colsize1=45;
@@ -231,12 +266,7 @@ elseif ($_GET["mode"]==2){
     // MODE 7 - JUST SMILEYS (BLACK)
     $out='<img src="'.$path_img.'" class="black" title="'.$text2replace.'">';
 
-}
-
-
-
-
-else{
+}else{
     $out="";
 }
 
@@ -255,8 +285,32 @@ function validExtension($filename){
     } else{
         return false;
     }
-        
 }
+
+function listFolders()
+{
+        // RECURSIVE SMILEYS LIST (*.gif)
+        $path = realpath('.');
+        $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST); // con directorios
+        foreach($objects as $name => $object){
+            if ( ($object->getFilename()!=".") && ($object->getFilename()!="..")  && (is_dir($object->getPathname())) && (substr_count($object->getPathname(),".git")==0)   )
+            {
+                $dir=substr($object->getPathname(),strlen(__DIR__)+1);
+                echo '<div class="folder">';
+                //echo '<a href="index.php?search='.$dir.'&mode=7"> <small>(black bg)</small>';
+                //echo '<a href="index.php?search='.$dir.'&mode=6"> <small>(white bg)</small>';
+                echo '<a href="index.php?search='.$dir.'&mode=6"> &raquo; '.$dir;
+                echo "</div>";
+                if (file_exists(__DIR__.'/'.$dir.'/folder.jpg')){
+                    echo '<br><img src="'.$dir.'/folder.jpg">';
+                }
+                echo '</a>';
+  
+            }
+            
+        }
+}
+
 
 ?>
 </body>
