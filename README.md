@@ -1,6 +1,10 @@
 # dokuwiki-smileys-local
 
-Recopilation of "smileys" to use in Dokuwiki.
+Recopilation of smileys packs to use in Dokuwiki.
+
+Small PHP script for easyly create your own smileys/tags/labels packs config file <code>smileys.local.conf</code> with just copy and paste from your own browser.
+
+<code>(http://YourDOKUWIKI.URL/lib/images/smileys/local/index.php)</code>
 
 ## Quick Start
 
@@ -84,11 +88,11 @@ Editing <code>smileys.local.conf</code> sometimes doesnt not work due to cache i
 
 ### I want to create my own icon package.
 
-Just create a new folder with your smileys, lauch the config generator (/lib/images/smileys/local/index,php), click on your folder, select option 1 and click search smileys
+Just create a new folder with your smileys, lauch the config generator in your browser<code>(http://YourDOKUWIKI.URL/lib/images/smileys/local/index.php)</code>, click on your folder, select option 1 and click search smileys
 
 Copy that inside your <code>conf/smileys.local.conf</code>
 
-You can add a folder.jpg inside your folder for icon pack preview.
+You can add a folder.jpg inside your folder for easy icon packs preview.
 
 
 ### What the #REPEATED text means?
