@@ -2,7 +2,7 @@
 
 Recopilation of smileys packs to use in Dokuwiki.
 
-Small PHP script for easyly create your own smileys/tags/labels packs config file <code>smileys.local.conf</code> with just copy and paste from your own browser.
+Small PHP script for easyly create your own smileys/tags/labels packs config file <code>conf/smileys.local.conf</code> with just copy and paste from your own browser.
 
 <code>(http://YourDOKUWIKI.URL/lib/images/smileys/local/index.php)</code>
 
