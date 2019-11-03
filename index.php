@@ -132,7 +132,7 @@ if (!isset($_GET["mode"]) || (!is_numeric($_GET["mode"]))) {
 </form>
 
 <h1><br><br><a href="./index.php"># Custom Smileys </a></h1>
-
+<br>
 <?php
 
 // header for copy and paste the smileys.local.conf
