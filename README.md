@@ -111,11 +111,21 @@ But you can edit the index.php to generate the <code>conf/smileys.local.conf</co
     $smileStringStart =':'; // prefix for smileys by default is :
     $smileStringEnd   =':'; // suffix for smileys by default is :
 ```
+You can also manually edit the <code>conf/smileys.local.conf</code> first column text-to-replace. 
 
-You can also just manually edit the <code>conf/smileys.local.conf</code> first column text-to-replace. 
+Example of GTD "(TAGS)":
+
+```
+(ACTION)                                     local/dokuwiki/action.gif    
+(TO-DO)                                      local/dokuwiki/to-do.gif     
+(NEXT)                                       local/dokuwiki/next.gif    
+(SOMEDAY)                                    local/dokuwiki/someday.gif     
+(WAITING)                                    local/dokuwiki/waiting.gif 
+(FINISHED)                                   local/dokuwiki/finished.gif   
+```
 
 
-### Can is use GTD :TAGS: on my Dokuwiki to keep track of my tasklists?
+### Can I use GTD :TAGS: on my Dokuwiki to keep track of my tasklists?
 
 With the Dokuwiki search tool is easy to keep track of :TAGS:
 
