@@ -106,11 +106,11 @@ By default Dokuwiki uses :TAGS:
 
 But you can edit the index.php to generate the <code>conf/smileys.local.conf</code> with your own symbols.
 
-<code>
-// CONFIG 
-$smileStringStart =':'; // prefix for smileys by default is :
-$smileStringEnd   =':'; // suffix for smileys by default is :
-</code>
+```php
+    // CONFIG 
+    $smileStringStart =':'; // prefix for smileys by default is :
+    $smileStringEnd   =':'; // suffix for smileys by default is :
+```
 
 You can also just manually edit the <code>conf/smileys.local.conf</code> first column text-to-replace. 
 
@@ -121,25 +121,24 @@ With the Dokuwiki search tool is easy to keep track of :TAGS:
 
 I have used this on my own Dokuwiki:
 
-<code>
+```
 :ACTION:                                     local/dokuwiki/action.gif    
 :TO-DO:                                      local/dokuwiki/to-do.gif     
 :NEXT:                                       local/dokuwiki/next.gif    
 :SOMEDAY:                                    local/dokuwiki/someday.gif     
 :WAITING:                                    local/dokuwiki/waiting.gif 
 :FINISHED:                                   local/dokuwiki/finished.gif   
-</code>
+```
 
 ### I want to disable some of the default smileys
 
 Add the text-to-replace to that smileys at the bottom of your  <code>conf/smileys.local.conf</code>
 
-<code>
-...
+```
 # DISABLED
-
+ 
 FIXME
 DELETEME
-</code>
+```
 
 
