@@ -95,6 +95,10 @@ $smileStringEnd   =':'; // suffix for smileys by default is :
         .conf {
             size: 11px;
         }
+        .title{
+            font-size: 2em;
+            font-weight: bold;
+        }
     </style>
 
 </head>
@@ -136,7 +140,7 @@ if (!isset($_GET["mode"]) || (!is_numeric($_GET["mode"]))) {
 <input type="submit" value="search smileys" style="float:right">
 </form>
 
-<h1><br><br><a href="./index.php"># Custom Smileys </a></h1>
+<span class="title"><br><br><a href="./index.php"># Custom Smileys </a></span>
 <br>
 <?php
 
@@ -224,8 +228,11 @@ if ($_GET["mode"]==1){
     $out.='<span class="text2replace '.$repeated_css.'"><b>'.$text2replace.'</b></span>'."\r\n";
     $out.=$columns1."\r\n";
     $out.='<span class="smileypath">'.$pathclean."</span>\r\n";
-    $out.=$columns2."\r\n";
-    $out.='<span class=" '.$repeated_css.'">'.$repeated_msg.'</span>'."\r\n";
+    if ($repeated_css=="repeated")
+    {
+        $out.=$columns2."\r\n";
+        $out.='<span class=" '.$repeated_css.'">'.$repeated_msg.'</span>'."\r\n";
+    }
     $out.='</div>';
     $out.="\r\n\r\n";
 }
