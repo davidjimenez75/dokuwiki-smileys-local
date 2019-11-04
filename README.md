@@ -38,9 +38,9 @@ Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
 
 ![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/dokuwiki/folder.jpg)
 
-### emojione
+### emojione-faces
 
-![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/emojione/folder.jpg)
+![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/emojione-faces/folder.jpg)
 
 ### emojione-smileys (just replace the default Dokuwiki smileys)
 
@@ -56,7 +56,7 @@ Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
 
 ### openmoji32
 
-![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/openmoji32/folder.jpg)
+![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/openmoji32-faces/folder.jpg)
 
 ### openmoji32-smileys (just replace the default dokuwiki smileys)
 

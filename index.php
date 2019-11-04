@@ -17,7 +17,7 @@ $smileStringEnd   =':'; // suffix for smileys by default is :
 
     <style type="text/css">
         body {
-            margin:0 auto;             
+            margin: 0 auto;
             font-size: 13px; 
 			font-family: courier new;
             <?php 
@@ -25,6 +25,8 @@ $smileStringEnd   =':'; // suffix for smileys by default is :
             {
                 if ($_GET["mode"]==0) {
                     echo 'background-color: #fff;';
+                }elseif ($_GET["mode"]==1) {
+                    echo 'background-color: #fff;';        
                 }elseif ($_GET["mode"]==6) {
                     echo 'background-color: #fff;';        
                 }elseif ($_GET["mode"]==7) {
@@ -89,6 +91,9 @@ $smileStringEnd   =':'; // suffix for smileys by default is :
             font-weight: bold;
             border: 1px solid #efefef;
             background-color: #efefef;
+        }
+        .conf {
+            size: 11px;
         }
     </style>
 
@@ -296,16 +301,26 @@ function listFolders()
             if ( ($object->getFilename()!=".") && ($object->getFilename()!="..")  && (is_dir($object->getPathname())) && (substr_count($object->getPathname(),".git")==0)   )
             {
                 $dir=substr($object->getPathname(),strlen(__DIR__)+1);
+                echo '<a href="index.php?search='.$dir.'&mode=1">';
                 echo '<div class="folder">';
                 //echo '<a href="index.php?search='.$dir.'&mode=7"> <small>(black bg)</small>';
                 //echo '<a href="index.php?search='.$dir.'&mode=6"> <small>(white bg)</small>';
-                echo '<a href="index.php?search='.$dir.'&mode=6"> &raquo; '.$dir;
-                echo "</div>";
-                if (file_exists(__DIR__.'/'.$dir.'/folder.jpg')){
-                    echo '<br><img src="'.$dir.'/folder.jpg">';
-                }
+                echo '&nbsp;&raquo; '.$dir;
                 echo '</a>';
-  
+
+                if (file_exists(__DIR__.'/'.$dir.'/smileys.local.conf')){
+                    echo '<a href="'.$dir.'/smileys.local.conf" target="_blank" class="conf"><small><small> smileys.local.conf</small></small></a>';
+                }
+
+                echo "</div>";
+
+                if (file_exists(__DIR__.'/'.$dir.'/folder.jpg')){
+                    echo '<a href="index.php?search='.$dir.'&mode=1" title="'.$dir.'">';
+                    echo '<br><img src="'.$dir.'/folder.jpg">';
+                    echo '</a>';                    
+                }
+
+                
             }
             
         }
