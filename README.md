@@ -36,7 +36,7 @@ Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
 
 ### dokuwiki
 
-![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/dokuwiki/folder.jpg)
+![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/dokuwiki-tags-en/folder.jpg)
 
 ### emojione-faces
 
@@ -48,7 +48,7 @@ Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
 
 ### github (tags)
 
-![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/github/folder.jpg)
+![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/github-tags-en/folder.jpg)
 
 ### icons8 (svg)
 
