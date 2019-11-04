@@ -10,6 +10,13 @@ Small PHP script for easyly create your own smileys/tags/labels packs config fil
 
 Create a <code>lib/images/smileys/local/</code> folder and clone this repo there.
 
+```
+cd ./lib/images/smileys/
+mkdir local
+cd local
+git clone https://github.com/davidjimenez75/dokuwiki-smileys-local/ ./
+```
+
 Copy the <code>smileys.local.conf</code> to <code>conf/smileys.local.conf</code>
 
 Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
