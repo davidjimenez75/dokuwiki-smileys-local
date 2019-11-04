@@ -23,18 +23,22 @@ Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
 
 
 
-## Included Smileys Packs
+## WYSIWYG Dokuwiki Editor
 
 ### Comparison between default Dokuwiki smileys Vs EmojiOne Vs OpenMoji
 
 ![WYSIWYG smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/smileys_comparison.jpg)
 
 
-### WYSIWYG Editor (example with Dokuwiki + openmoji icons packs added)
+### WYSIWYG Editor (example with Dokuwiki + OpenMoji icon packs added)
 
 ![WYSIWYG smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/folder.jpg)
 
-### dokuwiki
+
+
+## Smileys Packs
+
+### dokuwiki-tags-en
 
 ![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/dokuwiki-tags-en/folder.jpg)
 
@@ -46,7 +50,7 @@ Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
 
 ![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/emojione-smileys/folder.jpg)
 
-### github (tags)
+### github-tags-en
 
 ![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/github-tags-en/folder.jpg)
 
@@ -54,7 +58,7 @@ Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
 
 ![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/icons8/folder.jpg)
 
-### openmoji32
+### openmoji32-faces
 
 ![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/openmoji32-faces/folder.jpg)
 
@@ -84,6 +88,7 @@ An example configuration file could look like this: <code>
 # or eventually disable a smiley by mentioning the key, without image path.
 DELETEME
 ```
+
 
 
 ## Authors and Licenses
