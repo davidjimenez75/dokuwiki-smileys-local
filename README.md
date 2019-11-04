@@ -25,12 +25,13 @@ Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
 
 ## WYSIWYG Dokuwiki Editor
 
-### Comparison between default Dokuwiki smileys Vs EmojiOne Vs OpenMoji
+### Comparison between Dokuwiki Default smileys Vs EmojiOne Vs OpenMoji
 
 ![WYSIWYG smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/smileys_comparison.jpg)
 
+### WYSIWYG Editor 
 
-### WYSIWYG Editor (example with Dokuwiki + OpenMoji icon packs added)
+Example with "dokuwiki-tags-en" + "openmoji32-smileys" icon packs installed.
 
 ![WYSIWYG smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/folder.jpg)
 
