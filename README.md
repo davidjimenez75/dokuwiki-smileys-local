@@ -27,11 +27,15 @@ Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
 
 ### Comparison between Dokuwiki Default smileys Vs EmojiOne Vs OpenMoji
 
+Just copy the root folder <code>smileys.local.conf</code> to <code>conf/smileys.local.conf</code> 
+
+Don't forget to touch the file <code>conf/local.php</code> to refresh the Dokuwiki editor cache. ;)
+
 ![WYSIWYG smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/smileys_comparison.jpg)
 
 ### WYSIWYG Editor 
 
-Example with "dokuwiki-tags-en" + "openmoji32-smileys" icon packs installed.
+Example with "emojione-smileys" + "dokuwiki-tags-en" icon packs installed.
 
 ![WYSIWYG smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/folder.jpg)
 
