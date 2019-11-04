@@ -25,8 +25,12 @@ Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
 
 ## Included Smileys Packs
 
+### Comparison between default Dokuwiki smileys Vs EmojiOne Vs OpenMoji
 
-### WYSIWYG Editor
+![WYSIWYG smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/smileys_comparison.jpg)
+
+
+### WYSIWYG Editor (example with Dokuwiki + openmoji icons packs added)
 
 ![WYSIWYG smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/folder.jpg)
 
@@ -37,6 +41,10 @@ Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
 ### emojione
 
 ![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/emojione/folder.jpg)
+
+### emojione-smileys (just replace the default Dokuwiki smileys)
+
+![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/emojione-smileys/folder.jpg)
 
 ### github (tags)
 
@@ -49,6 +57,10 @@ Touch <code>conf/local.php</code> to refresh the Dokuwiki editor cache.
 ### openmoji32
 
 ![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/openmoji32/folder.jpg)
+
+### openmoji32-smileys (just replace the default dokuwiki smileys)
+
+![dokuwiki smileys](https://raw.githubusercontent.com/davidjimenez75/dokuwiki-smileys-local/master/openmoji32-smileys/folder.jpg)
 
 
 
