@@ -81,7 +81,7 @@ $smileStringEnd   =':'; // suffix for smileys by default is :
             color: grey;
         }
         a {
-            color:black;
+            color:blue;
             text-decoration: none;
         }
         a:hover {
