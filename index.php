@@ -318,15 +318,14 @@ function listFolders() {
                 echo $dir;
                 echo '</a>';
 
-                /*
-                // DISABLED SHOW folder.jpg
+                
+                // SHOW folder.jpg
                 if (file_exists(__DIR__.'/'.$dir.'/smileys.local.conf')){
                     echo '<a href="'.$dir.'/smileys.local.conf" target="_blank" class="conf"><small><small> smileys.local.conf</small></small></a>';
                 }
-                */
-
                 echo "</div>";
-                // realtime listing smileys on homepage
+                
+                // Realtime listing smileys on homepage
                 if (file_exists(__DIR__.'/'.$dir.'/folder.jpg')){
                     echo '<a href="index.php?search='.$dir.'&mode=1" title="'.$dir.'">';
                     //echo '<br><img src="'.$dir.'/folder.jpg">';
