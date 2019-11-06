@@ -167,7 +167,7 @@ if ($_GET["mode"]==0) {
     $path = realpath('.');
     $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST); // con directorios
     foreach($objects as $name => $object){
-        if ( ($object->getFilename()!=".") && ($object->getFilename()!="..")   && ($object->getFilename()!="folder.jpg") && (validExtension($object->getPathname())) ) 
+        if ( ($object->getFilename()!=".") && ($object->getFilename()!="..")  && ($object->getFilename()!="folder.jpg") && ($object->getFilename()!="smileys_comparison.jpg") && (validExtension($object->getPathname())) ) 
         {
             if (isset($_GET["search"]))
             {
@@ -195,9 +195,14 @@ function smiley($object){
     $colsize1=45;
     $colsize2=57;
 
-    // filename to TEXT_TO_REPLACE
+    // filename to TEXT_TO_REPLACE or personalized TEXT_TO_REPLACE  (icon.txt)
     $file=$object->getFilename();
-    $text2replace=$GLOBALS["smileStringStart"].strtoupper(substr($file,0,-4)).$GLOBALS["smileStringEnd"];
+    if (file_exists($object->getPathname().".txt"))
+    {
+        $text2replace=trim(file_get_contents($object->getPathname().".txt"));
+    }else{
+        $text2replace=$GLOBALS["smileStringStart"].strtoupper(substr($file,0,-4)).$GLOBALS["smileStringEnd"];
+    }
 
     // smiley img
     $path=substr($object->getPathname(),strlen(__DIR__)+1);
@@ -351,7 +356,16 @@ function listFolderSmileys($dir) {
         foreach($objects as $name => $object){
             if ( ($object->getFilename()!=".") && ($object->getFilename()!="..")   && ($object->getFilename()!="folder.jpg") && (validExtension($object->getPathname())) ) 
             {
-                echo '<img src="'.$dir."/".$object->getFilename().'" title="'.$object->getFilename().'">';
+                $title=$object->getFilename();
+                if (file_exists('./'.$dir.'/'.$object->getFilename().'.txt'))
+                {
+                    $text2replace="\r\n\r\n".file_get_contents('./'.$dir.'/'.$object->getFilename().'.txt');
+                }else{
+                    $text2replace="";
+                }
+
+
+                echo '<img src="'.$dir."/".$object->getFilename().'" title="'.$title.$text2replace.'">';
             }
         }
         echo "<br><br>";        
