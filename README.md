@@ -112,16 +112,14 @@ DELETEME
 
 ### I can't see the new smileys on the Dokuwiki editor.
 
-Editing <code>smileys.local.conf</code> sometimes doesnt not work due to cache issues, try touch the date of <code>conf/local.php</code> and reload Dokuwiki (Ctrl + F5).
+Editing <code>smileys.local.conf</code> sometimes doesnt not work due to cache issues, try touch the date of <code>conf/local.php</code> and reload Dokuwiki <code>(Ctrl + F5)</code>.
 
 
 ### I want to create my own icon package.
 
-Just create a new folder with your smileys, lauch the config generator in your browser<code>(http://YourDOKUWIKI.URL/lib/images/smileys/local/index.php)</code>, click on your folder, select option 1 and click search smileys
+Just create a new folder with your smileys, lauch the config generator in your browser <code>(http://YourDOKUWIKI.URL/lib/images/smileys/local/index.php)</code>, click on your folder, select content <code>(Ctrl + A)</code> and copy that inside your <code>conf/smileys.local.conf</code>
 
-Copy that inside your <code>conf/smileys.local.conf</code>
-
-You can add a folder.jpg inside your folder for easy icon packs preview.
+All icon packs folders are previewed on load.
 
 
 ### What the #REPEATED text means?

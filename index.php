@@ -2,7 +2,8 @@
 /**
  * dokuwiki-smileys-local
  * 
- * @rev. 191103
+ * @rev. 191106
+ * 
  */
 
 
@@ -87,10 +88,13 @@ $smileStringEnd   =':'; // suffix for smileys by default is :
             color:red;
         }
         .folder {
-            font-size: 1.5em;
+            font-size: 1.6em;
             font-weight: bold;
+            padding:5px;
             border: 1px solid #efefef;
-            background-color: #efefef;
+            background-color: #f3f6f9;
+            text-align: center;
+
         }
         .conf {
             size: 11px;
@@ -123,10 +127,10 @@ if (!isset($_GET["mode"]) || (!is_numeric($_GET["mode"]))) {
 }
 
 ?>
-<form action="index.php" method="get" style="float:right;border:1px solid white; background-color:white">
-<input type="text" name="search" value="<?php echo $_GET["search"];?>" placeholder="" style="float:right;">
-<br>
-<select name="mode" style="float:right;">
+<form action="index.php" method="get" style="float:left;border:1px solid white; background-color:white">
+<input type="text" name="search" value="<?php echo $_GET["search"];?>" placeholder="" style="float:left;" size="45">
+
+<select name="mode" style="float:left;">
   <option value="0"<?php if ($_GET["mode"]==0) echo "selected"; ?> >0. smileys folders</option>
   <option value="1"<?php if ($_GET["mode"]==1) echo "selected"; ?> >1. smileys.local.conf</option>
   <option value="2"<?php if ($_GET["mode"]==2) echo "selected"; ?> >2. dokuwiki</option>
@@ -136,8 +140,8 @@ if (!isset($_GET["mode"]) || (!is_numeric($_GET["mode"]))) {
   <option value="6"<?php if ($_GET["mode"]==6) echo "selected"; ?> >6. smileys (white bg)</option>
   <option value="7"<?php if ($_GET["mode"]==7) echo "selected"; ?> >7. smileys (black bg)</option>  
 </select>
-<br>
-<input type="submit" value="search smileys" style="float:right">
+
+<input type="submit" value="search smileys" style="float:left">
 </form>
 
 <span class="title"><br><br><a href="./index.php"># Custom Smileys </a></span>
@@ -299,8 +303,7 @@ function validExtension($filename){
     }
 }
 
-function listFolders()
-{
+function listFolders() {
         // RECURSIVE SMILEYS LIST (*.gif)
         $path = realpath('.');
         $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST); // con directorios
@@ -312,18 +315,22 @@ function listFolders()
                 echo '<div class="folder">';
                 //echo '<a href="index.php?search='.$dir.'&mode=7"> <small>(black bg)</small>';
                 //echo '<a href="index.php?search='.$dir.'&mode=6"> <small>(white bg)</small>';
-                echo '&nbsp;&raquo; '.$dir;
+                echo $dir;
                 echo '</a>';
 
+                /*
+                // DISABLED SHOW folder.jpg
                 if (file_exists(__DIR__.'/'.$dir.'/smileys.local.conf')){
                     echo '<a href="'.$dir.'/smileys.local.conf" target="_blank" class="conf"><small><small> smileys.local.conf</small></small></a>';
                 }
+                */
 
                 echo "</div>";
-
+                // realtime listing smileys on homepage
                 if (file_exists(__DIR__.'/'.$dir.'/folder.jpg')){
                     echo '<a href="index.php?search='.$dir.'&mode=1" title="'.$dir.'">';
-                    echo '<br><img src="'.$dir.'/folder.jpg">';
+                    //echo '<br><img src="'.$dir.'/folder.jpg">';
+                    listFolderSmileys($dir);
                     echo '</a>';                    
                 }
 
@@ -332,6 +339,22 @@ function listFolders()
             
         }
 }
+
+
+function listFolderSmileys($dir) {
+        echo "<br>";         
+        // RECURSIVE SMILEYS LIST (*.gif)
+        $path = realpath('./'.$dir);
+        $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST); // con directorios
+        foreach($objects as $name => $object){
+            if ( ($object->getFilename()!=".") && ($object->getFilename()!="..")   && ($object->getFilename()!="folder.jpg") && (validExtension($object->getPathname())) ) 
+            {
+                echo '<img src="'.$dir."/".$object->getFilename().'">';
+            }
+        }
+        echo "<br><br>";        
+}
+
 
 
 ?>
