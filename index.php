@@ -330,7 +330,7 @@ function listFolders() {
                 
                 // Realtime listing smileys on homepage
                 if (is_dir(__DIR__.'/'.$dir.'/')){
-                    echo '<a href="index.php?search='.$dir.'&mode=1" title="'.$dir.'" class="smiley-homepage">';
+                    echo '<a href="index.php?search='.$dir.'&mode=1" class="smiley-homepage">';
                     //echo '<br><img src="'.$dir.'/folder.jpg">';
                     listFolderSmileys($dir);
                     echo '</a>';                    
@@ -351,7 +351,7 @@ function listFolderSmileys($dir) {
         foreach($objects as $name => $object){
             if ( ($object->getFilename()!=".") && ($object->getFilename()!="..")   && ($object->getFilename()!="folder.jpg") && (validExtension($object->getPathname())) ) 
             {
-                echo '<img src="'.$dir."/".$object->getFilename().'">';
+                echo '<img src="'.$dir."/".$object->getFilename().'" title="'.$object->getFilename().'">';
             }
         }
         echo "<br><br>";        
