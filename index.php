@@ -66,6 +66,9 @@ $smileStringEnd   =':'; // suffix for smileys by default is :
             max-width: 128px;                /* important for svg smileys */
             margin: 3px;
         }
+        .smiley-homepage img{
+            margin: 3px;                    /* separation on smileys on homepage */
+        }
         .comments {
             color: #dadada;
         }
@@ -326,8 +329,8 @@ function listFolders() {
                 echo "</div>";
                 
                 // Realtime listing smileys on homepage
-                if (file_exists(__DIR__.'/'.$dir.'/folder.jpg')){
-                    echo '<a href="index.php?search='.$dir.'&mode=1" title="'.$dir.'">';
+                if (is_dir(__DIR__.'/'.$dir.'/')){
+                    echo '<a href="index.php?search='.$dir.'&mode=1" title="'.$dir.'" class="smiley-homepage">';
                     //echo '<br><img src="'.$dir.'/folder.jpg">';
                     listFolderSmileys($dir);
                     echo '</a>';                    
