@@ -369,7 +369,7 @@ function listFolderSmileys($dir) {
                     $title.="\r\n\r\n".file_get_contents('./'.$dir.'/'.$object->getFilename().'.txt');
                     $text2replace="<br>\r\n\r\n".file_get_contents('./'.$dir.'/'.$object->getFilename().'.txt');
                 }else{
-                    $text2replace="";
+                    $text2replace="<br>&nbsp;";
                 }
 
 
