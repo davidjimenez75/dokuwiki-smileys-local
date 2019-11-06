@@ -69,6 +69,11 @@ $smileStringEnd   =':'; // suffix for smileys by default is :
         .smiley-homepage img{
             margin: 3px;                    /* separation on smileys on homepage */
         }
+        .smiley-preview {
+            float: left;
+            border: 1px solid #dadada;          /* smileys preview on homepage */
+            text-align: center;
+        }
         .comments {
             color: #dadada;
         }
@@ -91,6 +96,8 @@ $smileStringEnd   =':'; // suffix for smileys by default is :
             color:red;
         }
         .folder {
+            margin-top: 1em;
+            clear: both;
             font-size: 1.6em;
             font-weight: bold;
             padding:5px;
@@ -359,13 +366,14 @@ function listFolderSmileys($dir) {
                 $title=$object->getFilename();
                 if (file_exists('./'.$dir.'/'.$object->getFilename().'.txt'))
                 {
-                    $text2replace="\r\n\r\n".file_get_contents('./'.$dir.'/'.$object->getFilename().'.txt');
+                    $title.="\r\n\r\n".file_get_contents('./'.$dir.'/'.$object->getFilename().'.txt');
+                    $text2replace="<br>\r\n\r\n".file_get_contents('./'.$dir.'/'.$object->getFilename().'.txt');
                 }else{
                     $text2replace="";
                 }
 
 
-                echo '<img src="'.$dir."/".$object->getFilename().'" title="'.$title.$text2replace.'">';
+                echo '<div class="smiley-preview"><img src="'.$dir."/".$object->getFilename().'" title="'.$title.'">'.$text2replace.'</div>';
             }
         }
         echo "<br><br>";        
