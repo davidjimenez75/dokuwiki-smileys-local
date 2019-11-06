@@ -321,7 +321,7 @@ function listFolders() {
                 
                 // SHOW folder.jpg
                 if (file_exists(__DIR__.'/'.$dir.'/smileys.local.conf')){
-                    echo '<a href="'.$dir.'/smileys.local.conf" target="_blank" class="conf"><small><small> smileys.local.conf</small></small></a>';
+                    echo '<br><a href="'.$dir.'/smileys.local.conf" target="_blank" class="conf"><small><small>Recommended smileys.local.conf </small></small></a>';
                 }
                 echo "</div>";
                 
